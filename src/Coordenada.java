@@ -1,54 +1,61 @@
-
-public class Coordenada {
-	private double x;
+public class Coordenada { 
+	private double x; 
 	private double y;
-	
-	public Coordenada() {
-		
+	private Coordenada c;
+	public Coordenada( ){
+		x=0;
+		y=0;
 	}
-	
-	public Coordenada(double x, double y) {
-		this.x  = x;
-		this.y = y;
-		
-	}
-	
-	public Coordenada(Coordenada c) {
-		this.x = c.x;
-		this.y = c.y;
-	}
-
-	public double getX() {
-		return this.x;
-	}
-
-	public void setX(double x) {
+	public Coordenada(double x, double y ){
 		this.x = x;
-	}
-
-	public double getY() {
-		return this.y;
-	}
-
-	public void setY(double y) {
 		this.y = y;
 	}
-	
-	public double distancia (Coordenada c) {
-		double dis = Math.sqrt(Math.pow(c.x - this.x,2)+ Math.pow(c.y- this.y,2));
-		return dis;
+	//Constructor
+	public Coordenada(Coordenada c ){
+		this.c=c;
 	}
-	
-	public static double distancia (Coordenada c1, Coordenada c2) {
-		double dis = Math.sqrt(Math.pow(c2.x - c1.x,2)+ Math.pow(c2.y- c1.y,2));
-		return dis;
+	void setX(double x) {
+		this.x=x;
 	}
 
-	@Override
-	public String toString() {
-		return "Coordenada [x=" + x + ", y=" + y + "]";
+	void setY(double y){
+		this.y=y;
 	}
-	
-	 
-	
+	double getX(){
+		return x;
+	}
+	double getY(){
+		return y;
+	}
+	double distancia(Coordenada c){
+		double DistX,DistY,distancia;
+		DistX=c.getX();
+		DistY=c.getY();
+		distancia=DistX-DistY;
+		if (distancia<0){
+			distancia=distancia*-1;
+		}
+		return distancia;
+	}
+	//Metodo de clase que calcula la distancia euclideana
+	static double distancia(Coordenada c1, Coordenada c2){
+		double DistX,DistY,distancia;
+		DistX=c1.getX()-c2.getX();
+		DistY=c1.getY()-c2.getY();
+		//	Obtener valores absolutos
+		if (DistX<0){
+			DistX=DistX*-1;
+		}if (DistY<0){
+			DistY=DistX*-1;
+		}
+		distancia=Math.sqrt(DistX*DistX+DistY*DistY);
+		return distancia;
+	}
+
+	public String toString(){
+		return "("+x + ";" + y + ")";
+	}
 }
+
+
+
